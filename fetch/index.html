@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta di Gollum - Il signore degli anelli</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+        
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .card-img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+        
+        .card-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carta di Gollum - Il signore degli anelli</h1>
+    <div id="card"></div>
+    <script>
+        const cardElement = document.getElementById("card");
+
+      
+        fetch("https://ringsdb.com/api/search?q=Gollum&type=character")
+            .then(response => response.json())
+            .then(data => {
+                if (data.results.length > 0) {
+                    const cardData = data.results[0];
+                    cardElement.innerHTML = `
+                        <img class="card-img" src="${cardData.card_image}" alt="${cardData.name}">
+                        <h2 class="card-name">${cardData.name}</h2>
+                    `;
+                } else {
+                    cardElement.innerHTML = `<p>Nessuna carta trovata per Gollum.</p>`;
+                }
+            });
+    </script>
+</body>
+</html>

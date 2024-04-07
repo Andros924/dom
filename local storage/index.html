@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form con salvataggio dati</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        h1{
+            margin-top: 0;
+        }
+        label{
+            font-weight: bold;
+        }
+        input{
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .btn{
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #0073b7;
+            color: #fff;
+        }
+        .printedform{
+            margin-top: 16px;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Il form di <span class="title-name"></span></h1>
+    <div class="form">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="email" placeholder="email">
+        <label for="firstname">Nome</label>
+        <input type="text" name="firstname" class="firstname" placeholder="nome">
+        <label for="lastname">Cognome</label>
+        <input type="text" name="lastname" class="lastname" placeholder="cognome">
+    </div>
+    <button class="btn">Salva</button>
+    <p class="printedform"></p>
+    <script>
+        const titleName = document.querySelector(".title-name");
+        const emailInput = document.querySelector(".email");
+        const firstNameInput = document.querySelector(".firstname");
+        const lastNameInput = document.querySelector(".lastname");
+        const saveBtn = document.querySelector(".btn");
+        
+       
+        const savedName = localStorage.getItem("savedName");
+        if (savedName) {
+            titleName.textContent = savedName;
+        }
+
+        saveBtn.addEventListener("click", () => {
+            const firstName = firstNameInput.value;
+            const fullName = `${firstName} ${lastNameInput.value}`; 
+
+            titleName.textContent = firstName;
+            document.querySelector(".printedform").textContent = `Email: ${emailInput.value}, Nome completo: ${fullName}`;
+
+            
+            localStorage.setItem("savedName", firstName);
+        });
+    </script>
+</body>
+</html>
