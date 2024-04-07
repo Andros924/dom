@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modalità Dark</title>
+    <style>
+      body {
+        background-color: #fff;
+        color: #000;
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+
+      .theme {
+        background-color: black;
+        color: white;
+      }
+
+      .btn {
+        margin: 10px auto;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Modalità Dark</h1>
+    <div>
+      <button class="btn">Dark Mode</button>
+    </div>
+    <script>
+      const button = document.querySelector(".btn");
+      const body = document.body;
+
+      button.addEventListener("click", () => {
+        body.classList.toggle("theme");
+
+        
+        button.textContent = body.classList.contains("theme") ? "Modalità Luce" : "Modalità Dark";
+      });
+    </script>
+  </body>
+</html>
